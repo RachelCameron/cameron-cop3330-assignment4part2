@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="435.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.ListManagerController">
+    <children>
+        <TableView fx:id="listViewer" editable="true" layoutX="24.0" layoutY="126.0" prefHeight="230.0" prefWidth="552.0">
+            <placeholder>
+                <Label prefHeight="99.0" prefWidth="225.0" text="Added or imported tasks will appear here." />
+            </placeholder>
+            <columns>
+                <TableColumn fx:id="itemViewer" prefWidth="285.0" text="Item:" />
+                <TableColumn fx:id="dueDateViewer" prefWidth="135.0" text="Due Date:" />
+                <TableColumn fx:id="statusViewer" minWidth="8.0" prefWidth="131.0" text="Status:" />
+            </columns>
+        </TableView>
+        <Button fx:id="showCompleteItemsOnlyButton" layoutX="23.0" layoutY="362.0" mnemonicParsing="false" onAction="#showCompleteItemsOnlyButtonClicked" prefHeight="0.0" prefWidth="272.0" style="-fx-background-radius: 90;" text="Show Complete Items Only">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="showIncompleteItemsOnlyButton" layoutX="306.0" layoutY="362.0" mnemonicParsing="false" onAction="#showIncompleteItemsOnlyButtonClicked" prefHeight="30.0" prefWidth="272.0" style="-fx-background-radius: 90;" text="Show Incomplete Items Only">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="-32.0" layoutY="14.0" prefHeight="39.0" prefWidth="182.0" text="Item:" textAlignment="CENTER">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="itemField" layoutX="105.0" layoutY="19.0" prefHeight="30.0" prefWidth="272.0" promptText="Description of item. (1 to 256 characters)">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </TextField>
+        <Label alignment="CENTER" layoutX="-32.0" layoutY="49.0" prefHeight="39.0" prefWidth="182.0" text="Due Date:" textAlignment="CENTER">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="itemDueDateField" layoutX="105.0" layoutY="54.0" prefHeight="30.0" prefWidth="272.0" promptText="When your item is due. (YYYY-MM-DD)">
+            <font>
+                <Font size="13.0" />
+            </font>
+        </TextField>
+        <Button fx:id="addItemButton" layoutX="251.0" layoutY="90.0" mnemonicParsing="false" onAction="#addItemButtonClicked" prefHeight="30.0" prefWidth="126.0" style="-fx-background-radius: 90;" text="Add Item">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="397.0" prefHeight="39.0" prefWidth="173.0" text="If you already have a list," textAlignment="CENTER">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="loadListButton" layoutX="412.0" layoutY="32.0" mnemonicParsing="false" onAction="#loadListButtonClicked" prefHeight="30.0" prefWidth="142.0" style="-fx-background-radius: 90;" text="Load List">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="387.0" layoutY="58.0" prefHeight="39.0" prefWidth="192.0" text="If you'd like to save this list," textAlignment="CENTER">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Button fx:id="saveListButton" layoutX="412.0" layoutY="90.0" mnemonicParsing="false" onAction="#saveListButtonClicked" prefHeight="30.0" prefWidth="142.0" style="-fx-background-radius: 90;" text="Save List">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="removeItemButton" layoutX="23.0" layoutY="398.0" mnemonicParsing="false" onAction="#removeItemButtonClicked" prefHeight="0.0" prefWidth="272.0" style="-fx-background-radius: 90;" text="Remove Item">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Button fx:id="clearAllListItemsButton" layoutX="306.0" layoutY="398.0" mnemonicParsing="false" onAction="#clearAllListItemsButtonClicked" prefHeight="30.0" prefWidth="272.0" style="-fx-background-radius: 90;" text="Clear All List Items">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <CheckBox fx:id="completeCheckBox" layoutX="105.0" layoutY="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="142.0" text="Check If Complete">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </CheckBox>
+    </children>
+</AnchorPane>

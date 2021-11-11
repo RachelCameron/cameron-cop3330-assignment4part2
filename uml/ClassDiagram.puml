@@ -1,0 +1,42 @@
+@startuml
+
++class App{
++void start(Stage primaryStage)
++void main(String[] args)
+}
+
++class ListManagerController{
+-TextField itemField
+-TextField itemDueDateField
+-CheckBox completeCheckBox
++void checkComplete(String item, Object list)
+-TableView<?> listViewer
+-TableColumn<?, ?> itemViewer
+-TableColumn<?, ?> dueDateViewer
+-TableColumn<?, ?> statusViewer
+-Button addItemButton
+void addItemButtonClicked(ActionEvent event)
++void addItem(String item, String itemDueDate, Object list)
+-Button clearAllListItemsButton
+void clearAllListItemsButtonClicked(ActionEvent event)
++void clearAllListItems(String item, Object list)
+-Button removeItemButton
+void removeItemButtonClicked(ActionEvent event)
++void removeItem(String item, Object list)
+-Button saveListButton
+void saveListButtonClicked(ActionEvent event)
++void saveList(File fileName)
+-Button loadListButton
+void loadListButtonClicked(ActionEvent event)
++void loadList(File fileName)
+-Button showCompleteItemsOnlyButton
+void showCompleteItemsOnlyButtonClicked(ActionEvent event)
++void showCompleteItemsOnly(Object completeItems)
+-Button showIncompleteItemsOnlyButton
+void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
++void showIncompleteItemsOnly(Object incompleteItems)
+}
+
+App "launches" --> ListManagerController
+
+@enduml
