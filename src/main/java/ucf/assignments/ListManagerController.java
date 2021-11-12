@@ -17,6 +17,8 @@ import java.io.File;
 
 public class ListManagerController {
 
+    private final ToDoList list = new ToDoList();
+
     //2. An item shall have a description
     // - A description shall be between 1 and 256 characters in length
     @FXML
@@ -68,6 +70,7 @@ public class ListManagerController {
     @FXML
     void addItemButtonClicked(ActionEvent event) {
         //calls addItem()
+        list.addItem(itemField.getText(), itemDueDateField.getText(), completeCheckBox.isSelected());
     }
 
     //4. A user shall be able to add a new item to the list
