@@ -9,20 +9,20 @@
 -TextField itemField
 -TextField itemDueDateField
 -CheckBox completeCheckBox
-+void checkComplete(String item, Object list)
++void checkComplete()
 -TableView<?> listViewer
 -TableColumn<?, ?> itemViewer
 -TableColumn<?, ?> dueDateViewer
 -TableColumn<?, ?> statusViewer
 -Button addItemButton
 void addItemButtonClicked(ActionEvent event)
-+void addItem(String item, String itemDueDate, Object list)
++void addItem()
 -Button clearAllListItemsButton
 void clearAllListItemsButtonClicked(ActionEvent event)
-+void clearAllListItems(String item, Object list)
++void clearAllListItems()
 -Button removeItemButton
 void removeItemButtonClicked(ActionEvent event)
-+void removeItem(String item, Object list)
++void removeItem()
 -Button saveListButton
 void saveListButtonClicked(ActionEvent event)
 +void saveList(File fileName)
@@ -31,10 +31,10 @@ void loadListButtonClicked(ActionEvent event)
 +void loadList(File fileName)
 -Button showCompleteItemsOnlyButton
 void showCompleteItemsOnlyButtonClicked(ActionEvent event)
-+void showCompleteItemsOnly(Object completeItems)
++void showCompleteItemsOnly()
 -Button showIncompleteItemsOnlyButton
 void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
-+void showIncompleteItemsOnly(Object incompleteItems)
++void showIncompleteItemsOnly()
 }
 
 App "launches" --> ListManagerController

@@ -37,8 +37,7 @@ public class ListManagerController {
     @FXML
     private CheckBox completeCheckBox;
 
-    //9. A user shall be able to mark an item in the list as either complete or incomplete
-    public void checkComplete(String item, Object list) {
+    public void checkComplete() {
         //allows user to check an item on their list as complete
     }
 
@@ -67,15 +66,13 @@ public class ListManagerController {
     @FXML
     private Button addItemButton;
 
-    //4. A user shall be able to add a new item to the list
     @FXML
     void addItemButtonClicked(ActionEvent event) {
         //calls addItem()
         list.addItem(itemField.getText(), itemDueDateField.getText(), completeCheckBox.isSelected());
     }
 
-    //4. A user shall be able to add a new item to the list
-    public void addItem(String item, String itemDueDate, Object list) {
+    public void addItem() {
         //allows user to add an item to their list populated with the above criteria (description and due date)
 
     }
@@ -84,14 +81,12 @@ public class ListManagerController {
     @FXML
     private Button clearAllListItemsButton;
 
-    //6. A user shall be able to clear the list of all items
     @FXML
     void clearAllListItemsButtonClicked(ActionEvent event) {
         //calls clearAllListItems()
     }
 
-    //6. A user shall be able to clear the list of all items
-    public void clearAllListItems(String item, Object list) {
+    public void clearAllListItems() {
         //removes all the items from the list
     }
 
@@ -99,14 +94,12 @@ public class ListManagerController {
     @FXML
     private Button removeItemButton;
 
-    //5. A user shall be able to remove an item from the list
     @FXML
     void removeItemButtonClicked(ActionEvent event) {
         //calls removeItem()
     }
 
-    //5. A user shall be able to remove an item from the list
-    public void removeItem(String item, Object list) {
+    public void removeItem() {
         //removes an item from the list
     }
 
@@ -114,13 +107,11 @@ public class ListManagerController {
     @FXML
     private Button saveListButton;
 
-    //13. A user shall be able to save the list (and all of its items) to external storage
     @FXML
     void saveListButtonClicked(ActionEvent event) {
         //calls saveList()
     }
 
-    //13. A user shall be able to save the list (and all of its items) to external storage
     public void saveList(File fileName) {
         //saves the current list
     }
@@ -129,13 +120,11 @@ public class ListManagerController {
     @FXML
     private Button loadListButton;
 
-    //14. A user shall be able to load a list (and all of its items) from external storage
     @FXML
     void loadListButtonClicked(ActionEvent event) {
         //calls loadList()
     }
 
-    //14. A user shall be able to load a list (and all of its items) from external storage
     public void loadList(File fileName) {
         //loads list selected by user
     }
@@ -144,14 +133,12 @@ public class ListManagerController {
     @FXML
     private Button showCompleteItemsOnlyButton;
 
-    //12. A user shall be able to display only the completed items in the list
     @FXML
     void showCompleteItemsOnlyButtonClicked(ActionEvent event) {
         //calls showCompleteItemsOnly()
     }
 
-    //12. A user shall be able to display only the completed items in the list
-    public void showCompleteItemsOnly(Object completeItems) {
+    public void showCompleteItemsOnly() {
         //only shows the completed items in the list viewer
     }
 
@@ -159,14 +146,12 @@ public class ListManagerController {
     @FXML
     private Button showIncompleteItemsOnlyButton;
 
-    //11. A user shall be able to display only the incomplete items in the list
     @FXML
     void showIncompleteItemsOnlyButtonClicked(ActionEvent event) {
         //calls showIncompleteItemsOnly()
     }
 
-    //11. A user shall be able to display only the incomplete items in the list
-    public void showIncompleteItemsOnly(Object incompleteItems) {
+    public void showIncompleteItemsOnly() {
         //only shows the incompleted items in the list viewer
     }
 
