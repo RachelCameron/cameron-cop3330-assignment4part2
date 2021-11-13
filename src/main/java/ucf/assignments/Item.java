@@ -2,7 +2,7 @@ package ucf.assignments;
 
 public class Item {
     private String description;
-    private final String dueDate;
+    private String dueDate;
     private boolean complete;
 
     public Item(String description, String dueDate, boolean complete){
@@ -23,8 +23,8 @@ public class Item {
     }
 
     public void setDueDate(String description){
-        if(descriptionIsValid(description)){
-            this.description = description;
+        if(dueDateIsValid(dueDate)){
+            this.dueDate = dueDate;
         }
     }
 
@@ -45,7 +45,7 @@ public class Item {
         return complete;
     }
 
-    public static boolean descriptionIsValid(String dueDate){
+    public static boolean descriptionIsValid(String description){
         return true;
     }
 
