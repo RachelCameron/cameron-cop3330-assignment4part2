@@ -21,40 +21,30 @@ public class ListManagerController {
 
     //2. An item shall have a description
     // - A description shall be between 1 and 256 characters in length
-    @FXML
-    private TextField itemField;
+    @FXML private TextField itemField;
     //requires user to describe what their item (task) is between 1 and 256 characters in length
 
     //3. An item shall have a due date
     // - A due date shall be a valid date within the Gregorian Calendar
     // - A due date shall be displayed to users in the format: YYYY-MM-DD
-    @FXML
-    private TextField itemDueDateField;
+    @FXML private TextField itemDueDateField;
     //requires user to give their item a valid due date in the format of YYYY-MM-DD
 
-    @FXML
-    private Button addItemButton;
+    @FXML private Button addItemButton;
 
-    @FXML
-    private Button clearAllListItemsButton;
+    @FXML private Button clearAllListItemsButton;
 
-    @FXML
-    private Button removeItemButton;
+    @FXML private Button removeItemButton;
 
-    @FXML
-    private Button saveListButton;
+    @FXML private Button saveListButton;
 
-    @FXML
-    private Button loadListButton;
+    @FXML private Button loadListButton;
 
-    @FXML
-    private Button showCompleteItemsOnlyButton;
+    @FXML private Button showCompleteItemsOnlyButton;
 
-    @FXML
-    private Button showIncompleteItemsOnlyButton;
+    @FXML private Button showIncompleteItemsOnlyButton;
 
-    @FXML
-    private CheckBox completeCheckBox;
+    @FXML private CheckBox completeCheckBox;
 
     //9. A user shall be able to mark an item in the list as either complete or incomplete
     public void checkComplete() {
@@ -64,22 +54,18 @@ public class ListManagerController {
     //1. The application shall manage a single list of items
     // - The list shall have the capacity to store at least 100 unique items
     //10. A user shall be able to display all of the existing items in the list
-    @FXML
-    private TableView<?> listViewer;
+    @FXML private TableView<?> listViewer;
     //view of the list
 
     //7. A user shall be able to edit the description of an item within the list
-    @FXML
-    private TableColumn<?, ?> itemViewer;
+    @FXML private TableColumn<?, ?> itemViewer;
     //view of the list items
 
     //8. A user shall be able to edit the due date of an item within the list
-    @FXML
-    private TableColumn<?, ?> dueDateViewer;
+    @FXML private TableColumn<?, ?> dueDateViewer;
     //view of the list items' due dates
 
-    @FXML
-    private TableColumn<?, ?> statusViewer;
+    @FXML private TableColumn<?, ?> statusViewer;
     //view of the list items' statuses (complete or incomplete)
 
     @FXML
