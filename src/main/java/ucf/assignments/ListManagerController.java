@@ -5,6 +5,7 @@ package ucf.assignments;
  *  Copyright 2021 Rachel Cameron
  */
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -76,6 +77,7 @@ public class ListManagerController {
     //4. A user shall be able to add a new item to the list
     public void addItem(String item, String itemDueDate, Object list) {
         //allows user to add an item to their list populated with the above criteria (description and due date)
+
     }
 
     //6. A user shall be able to clear the list of all items

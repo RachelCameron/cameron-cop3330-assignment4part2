@@ -1,5 +1,7 @@
 package ucf.assignments;
 
+import java.time.LocalDate;
+
 public class Item {
     private String description;
     private String dueDate;
@@ -22,7 +24,7 @@ public class Item {
         }
     }
 
-    public void setDueDate(String description){
+    public void setDueDate(String dueDate){
         if(dueDateIsValid(dueDate)){
             this.dueDate = dueDate;
         }
@@ -41,7 +43,7 @@ public class Item {
         return dueDate;
     }
 
-    public boolean getCompleted(){
+    public boolean getComplete(){
         return complete;
     }
 
@@ -50,6 +52,7 @@ public class Item {
     }
 
     public static boolean dueDateIsValid(String dueDate){
+        LocalDate.parse((dueDate));
         return true;
     }
 

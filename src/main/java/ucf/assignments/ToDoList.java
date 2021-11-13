@@ -1,13 +1,8 @@
 package ucf.assignments;
 
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import javafx.scene.control.TableView;
 
 public class ToDoList {
 
@@ -28,6 +23,7 @@ public class ToDoList {
     }
 
     public ObservableList<Item> getToDoList(){
+        ObservableList<Item> toDoList = FXCollections.observableArrayList();
         return toDoList;
     }
 
