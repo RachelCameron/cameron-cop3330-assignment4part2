@@ -12,8 +12,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.BooleanStringConverter;
 import java.io.File;
+
+import static ucf.assignments.Item.descriptionIsValid;
+import static ucf.assignments.Item.dueDateIsValid;
 
 public class ListManagerController {
 
@@ -54,30 +59,86 @@ public class ListManagerController {
     //1. The application shall manage a single list of items
     // - The list shall have the capacity to store at least 100 unique items
     //10. A user shall be able to display all of the existing items in the list
-    @FXML private TableView<?> listViewer;
+    @FXML private TableView<Item> listViewer;
     //view of the list
 
     //7. A user shall be able to edit the description of an item within the list
-    @FXML private TableColumn<?, ?> itemViewer;
+    @FXML private TableColumn<Item, String> itemViewer;
     //view of the list items
 
     //8. A user shall be able to edit the due date of an item within the list
-    @FXML private TableColumn<?, ?> dueDateViewer;
+    @FXML private TableColumn<Item, String> dueDateViewer;
     //view of the list items' due dates
 
-    @FXML private TableColumn<?, ?> statusViewer;
+    @FXML private TableColumn<Item, Boolean> statusViewer;
     //view of the list items' statuses (complete or incomplete)
+
+    private int index = 0;
+
+    @FXML
+    void initialize() {
+        itemViewer.setCellFactory(TextFieldTableCell.forTableColumn());
+        itemViewer.setOnEditCommit(event ->
+        {
+            if (descriptionIsValid(event.getNewValue())) {
+                Item item = event.getRowValue();
+                item.setDescription(event.getNewValue());
+            }
+            else{
+                listViewer.refresh();
+            }
+        });
+        dueDateViewer.setCellFactory(TextFieldTableCell.forTableColumn());
+        dueDateViewer.setOnEditCommit(event ->
+        {
+            if (dueDateIsValid(event.getNewValue())) {
+                Item item = event.getRowValue();
+                item.setDueDate(event.getNewValue());
+            }
+            else{
+                listViewer.refresh();
+            }
+        });
+        statusViewer.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
+        statusViewer.setOnEditCommit(event -> {
+            Item item = event.getRowValue();
+            item.setComplete(event.getNewValue());
+        });
+    }
 
     @FXML
     void addItemButtonClicked(ActionEvent event) {
         //calls addItem()
-        list.addItem(itemField.getText(), itemDueDateField.getText(), completeCheckBox.isSelected());
+        if(descriptionIsValid(itemField.getText()) && isNotDuplicate(itemField.getText())){
+            addItem();
+            displayItem();
+            clear();
+        }
+        else{
+            itemField.setText("Invalid or duplicate description!");
+        }
     }
 
     //4. A user shall be able to add a new item to the list
     public void addItem() {
         //allows user to add an item to their list populated with the above criteria (description and due date)
+        list.addItem(itemField.getText(), itemDueDateField.getText(), completeCheckBox.isSelected());
+    }
 
+    private void displayItem(){
+        //display the created item and add to the index
+        itemViewer.setCellValueFactory(new PropertyValueFactory<>("description"));
+        dueDateViewer.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        statusViewer.setCellValueFactory(new PropertyValueFactory<>("complete"));
+        listViewer.getItems().add(list.getToDoList().get(index));
+        index++;
+    }
+
+    private void clear(){
+        //clears the text fields
+        itemField.clear();
+        itemDueDateField.clear();
+        completeCheckBox.setSelected(false);
     }
 
     @FXML
@@ -133,6 +194,20 @@ public class ListManagerController {
     @FXML
     void showIncompleteItemsOnlyButtonClicked(ActionEvent event) {
         //calls showIncompleteItemsOnly()
+    }
+
+    public boolean isNotDuplicate(String desc){
+        if(list.getToDoList().isEmpty()){
+            return true;
+        }
+        else{
+            for(Item item : list.getToDoList()){
+                if(item.getDescription().equals(desc)){
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     //11. A user shall be able to display only the incomplete items in the list
