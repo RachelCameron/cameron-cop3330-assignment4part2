@@ -109,13 +109,14 @@ public class ListManagerController {
     @FXML
     void addItemButtonClicked(ActionEvent event) {
         //calls addItem()
-        if(descriptionIsValid(itemField.getText()) && isNotDuplicate(itemField.getText())){
+        if(descriptionIsValid(itemField.getText()) && dueDateIsValid(itemDueDateField.getText()) && isNotDuplicate(itemField.getText())){
             addItem();
             displayItem();
             clear();
         }
         else{
-            itemField.setText("Invalid or duplicate description!");
+            itemField.setText("One or more invalid entries, please try again.");
+            itemDueDateField.setText("One or more invalid entries, please try again.");
         }
     }
 
