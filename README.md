@@ -13,8 +13,10 @@ in the Gregorian Calendar, you will run into this message until it is valid:
 "One or more invalid entries, please try again."
 3. Check the checkbox next to the label "Check If Complete" only if the item
 is already completed. If it is not already complete, leave the box unchecked.
-- REMOVE AN ITEM:
-- CLEAR ALL ITEMS:
+- REMOVE AN ITEM: Click once on the item you want to remove to select it.
+Once selected, the item will automatically highlight blue to indicate selection.
+Click on the "Remove Item" button to finalize removal of the selected item.
+- CLEAR ALL ITEMS: To clear the list of all items, click the "Clear All List Items" button.
 - EDIT ITEM DESCRIPTION: Double-click the current item description of the item
 description you would like to edit. Type the new item description and press the
 enter key. If the new item description is not valid, it will not update in the
