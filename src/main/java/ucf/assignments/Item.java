@@ -15,12 +15,7 @@ public class Item {
 
     public Item(String description, String dueDate, boolean complete){
         this.description = description;
-        if(dueDateIsValid(dueDate)){
-            this.dueDate = dueDate;
-        }
-        else{
-            this.dueDate = "No Due Date";
-        }
+        this.dueDate = dueDate;
         this.complete = complete;
     }
 
@@ -57,7 +52,7 @@ public class Item {
     }
 
     public static boolean descriptionIsValid(String description){
-        return description.length() > 1 && description.length() < 256 && !(description.equals("Invalid or duplicate description!"));
+        return description.length() >= 1 && description.length() <= 256 && !(description.equals("One or more invalid entries, please try again."));
     }
 
     public static boolean dueDateIsValid(String dueDate){
