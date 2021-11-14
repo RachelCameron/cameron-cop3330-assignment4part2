@@ -1,6 +1,12 @@
 package ucf.assignments;
 
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Rachel Cameron
+ */
+
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Item {
     private String description;
@@ -28,6 +34,9 @@ public class Item {
         if(dueDateIsValid(dueDate)){
             this.dueDate = dueDate;
         }
+        else{
+            this.dueDate = "Invalid Due Date";
+        }
     }
 
     public void setComplete(boolean complete){
@@ -48,11 +57,15 @@ public class Item {
     }
 
     public static boolean descriptionIsValid(String description){
-        return true;
+        return description.length() > 1 && description.length() < 256 && !(description.equals("Invalid or duplicate description!"));
     }
 
     public static boolean dueDateIsValid(String dueDate){
-        LocalDate.parse((dueDate));
+        try {
+            LocalDate.parse((dueDate));
+        } catch (DateTimeParseException e){
+            return false;
+        }
         return true;
     }
 
