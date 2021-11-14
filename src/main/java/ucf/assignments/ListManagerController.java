@@ -128,9 +128,9 @@ public class ListManagerController {
 
     private void displayItem(){
         //display the created item and add to the index
-        itemViewer.setCellValueFactory(new PropertyValueFactory<>("description"));
+        itemViewer.setCellValueFactory(new PropertyValueFactory<>("item"));
         dueDateViewer.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        statusViewer.setCellValueFactory(new PropertyValueFactory<>("complete"));
+        statusViewer.setCellValueFactory(new PropertyValueFactory<>("status"));
         listViewer.getItems().add(list.getToDoList().get(index));
         index++;
     }
@@ -145,21 +145,33 @@ public class ListManagerController {
     @FXML
     void clearAllListItemsButtonClicked(ActionEvent event) {
         //calls clearAllListItems()
+        clearAllListItems();
     }
 
     //6. A user shall be able to clear the list of all items
     public void clearAllListItems() {
         //removes all the items from the list
+        list.getToDoList().clear();
+        listViewer.getItems().clear();
+        index = 0;
+        clear();
     }
 
     @FXML
     void removeItemButtonClicked(ActionEvent event) {
         //calls removeItem()
+        removeItem();
     }
 
     //5. A user shall be able to remove an item from the list
     public void removeItem() {
         //removes an item from the list
+        Item selectedItem = listViewer.getSelectionModel().getSelectedItem();
+        if(selectedItem != null){
+            list.removeItem(selectedItem);
+            index--;
+            listViewer.getItems().remove(selectedItem);
+        }
     }
 
     @FXML
@@ -198,17 +210,14 @@ public class ListManagerController {
     }
 
     public boolean isNotDuplicate(String desc){
-        if(list.getToDoList().isEmpty()){
-            return true;
-        }
-        else{
-            for(Item item : list.getToDoList()){
-                if(item.getDescription().equals(desc)){
+        if (!list.getToDoList().isEmpty()) {
+            for (Item item : list.getToDoList()) {
+                if (item.getDescription().equals(desc)) {
                     return false;
                 }
             }
-            return true;
         }
+        return true;
     }
 
     //11. A user shall be able to display only the incomplete items in the list
