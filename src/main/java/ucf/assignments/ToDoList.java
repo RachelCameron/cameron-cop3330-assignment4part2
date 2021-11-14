@@ -1,11 +1,16 @@
 package ucf.assignments;
 
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Rachel Cameron
+ */
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ToDoList {
 
-    private ObservableList<Item> toDoList;
+    private final ObservableList<Item> toDoList = FXCollections.observableArrayList();
 
     public void addItem(String description, String dueDate, boolean complete){
         if(Item.descriptionIsValid(description)){
@@ -22,7 +27,6 @@ public class ToDoList {
     }
 
     public ObservableList<Item> getToDoList(){
-        ObservableList<Item> toDoList = FXCollections.observableArrayList();
         return toDoList;
     }
 
