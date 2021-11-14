@@ -5,6 +5,8 @@ package ucf.assignments;
  *  Copyright 2021 Rachel Cameron
  */
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,8 +16,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import javafx.util.converter.BooleanStringConverter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 import static ucf.assignments.Item.descriptionIsValid;
 import static ucf.assignments.Item.dueDateIsValid;
@@ -50,6 +57,9 @@ public class ListManagerController {
     @FXML private Button showIncompleteItemsOnlyButton;
 
     @FXML private CheckBox completeCheckBox;
+
+    boolean incompleteFlag;
+    boolean completeFlag;
 
     //9. A user shall be able to mark an item in the list as either complete or incomplete
     public void checkComplete() {
@@ -112,7 +122,7 @@ public class ListManagerController {
         if(descriptionIsValid(itemField.getText()) && dueDateIsValid(itemDueDateField.getText()) && isNotDuplicate(itemField.getText())){
             addItem();
             displayItem();
-            clear();
+            clearTestFields();
         }
         else{
             itemField.setText("One or more invalid entries, please try again.");
@@ -128,11 +138,17 @@ public class ListManagerController {
 
     private void displayItem(){
         //display the created item and add to the index
-        itemViewer.setCellValueFactory(new PropertyValueFactory<>("item"));
+        itemViewer.setCellValueFactory(new PropertyValueFactory<>("description"));
         dueDateViewer.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        statusViewer.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusViewer.setCellValueFactory(new PropertyValueFactory<>("complete"));
         listViewer.getItems().add(list.getToDoList().get(index));
         index++;
+    }
+
+    private void clearTestFields(){
+        itemField.clear();
+        itemDueDateField.clear();
+        completeCheckBox.setSelected(false);
     }
 
     private void clear(){
@@ -140,21 +156,21 @@ public class ListManagerController {
         itemField.clear();
         itemDueDateField.clear();
         completeCheckBox.setSelected(false);
+        listViewer.getItems().clear();
+        index = 0;
+        clearAllListItems();
     }
 
     @FXML
     void clearAllListItemsButtonClicked(ActionEvent event) {
         //calls clearAllListItems()
-        clearAllListItems();
+        clear();
     }
 
     //6. A user shall be able to clear the list of all items
     public void clearAllListItems() {
         //removes all the items from the list
         list.getToDoList().clear();
-        listViewer.getItems().clear();
-        index = 0;
-        clear();
     }
 
     @FXML
@@ -175,38 +191,112 @@ public class ListManagerController {
     }
 
     @FXML
-    void saveListButtonClicked(ActionEvent event) {
+    void saveListButtonClicked(ActionEvent event) throws IOException {
         //calls saveList()
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save List");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+            FileWriter writer = new FileWriter(fileChooser.showSaveDialog(null));
+            saveList(writer);
+
     }
 
     //13. A user shall be able to save the list (and all of its items) to external storage
-    public void saveList(File fileName) {
+    public void saveList(FileWriter writer) throws IOException {
         //saves the current list
+        for(Item i : list.getToDoList()) {
+            writer.write(i.getDescription()+","+i.getDueDate()+","+i.getComplete()+"\n");
+        }
+        writer.close();
     }
 
     @FXML
-    void loadListButtonClicked(ActionEvent event) {
+    void loadListButtonClicked(ActionEvent event) throws IOException {
         //calls loadList()
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Load List");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File file = fileChooser.showOpenDialog(listViewer.getScene().getWindow());
+        loadList(file);
     }
 
     //14. A user shall be able to load a list (and all of its items) from external storage
-    public void loadList(File fileName) {
+    public void loadList(File file) throws FileNotFoundException {
         //loads list selected by user
+        clear();
+        Scanner scanner = new Scanner(file);
+        index = 0;
+        while(scanner.hasNextLine()) {
+            String[] array = scanner.nextLine().split(",");
+            list.addItem(array[0], array[1], array[2].equals("true"));
+            displayItem();
+        }
     }
 
     @FXML
     void showCompleteItemsOnlyButtonClicked(ActionEvent event) {
-        //calls showCompleteItemsOnly()
+        showCompleteItemsOnly();
     }
 
     //12. A user shall be able to display only the completed items in the list
     public void showCompleteItemsOnly() {
-        //only shows the completed items in the list viewer
+        ObservableList<Item> completeList = FXCollections.observableArrayList();
+
+        if(!completeFlag)
+        {
+            for(Item i : list.getToDoList()) {
+                if(i.getComplete()){
+                    completeList.add(i);
+                }
+            }
+            listViewer.setItems(completeList);
+            showCompleteItemsOnlyButton.setText("Show All Items");
+            completeFlag = true;
+        }
+        else
+        {
+            listViewer.setItems(list.getToDoList());
+            showCompleteItemsOnlyButton.setText("Show Complete Items Only");
+            completeFlag = false;
+
+        }
     }
 
     @FXML
     void showIncompleteItemsOnlyButtonClicked(ActionEvent event) {
         //calls showIncompleteItemsOnly()
+        showIncompleteItemsOnly();
+    }
+
+
+    //11. A user shall be able to display only the incomplete items in the list
+    public void showIncompleteItemsOnly() {
+        //only shows the incompleted items in the list viewer
+            ObservableList<Item> incompleteList = FXCollections.observableArrayList();
+            //Initialize new ObservableList
+            //Make for loop for each thing from your main list
+            // If incomplete then add it to new list
+            // setItems(newList)
+
+        if(!incompleteFlag)
+        {
+            for(Item i : list.getToDoList()) {
+                if(!i.getComplete()){
+                    incompleteList.add(i);
+                }
+            }
+            listViewer.setItems(incompleteList);
+            showIncompleteItemsOnlyButton.setText("Show All Items");
+            incompleteFlag = true;
+        }
+        else
+        {
+            listViewer.setItems(list.getToDoList());
+            showIncompleteItemsOnlyButton.setText("Show Incomplete Items Only");
+            incompleteFlag = false;
+        }
     }
 
     public boolean isNotDuplicate(String desc){
@@ -218,11 +308,6 @@ public class ListManagerController {
             }
         }
         return true;
-    }
-
-    //11. A user shall be able to display only the incomplete items in the list
-    public void showIncompleteItemsOnly() {
-        //only shows the incompleted items in the list viewer
     }
 
 }
