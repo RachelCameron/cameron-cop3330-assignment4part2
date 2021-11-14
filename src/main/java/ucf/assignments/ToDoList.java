@@ -18,12 +18,12 @@ public class ToDoList {
         }
     }
 
-    public void removeItem(Item item){
-        toDoList.remove(item);
-    }
-
     public void clearList(){
         toDoList.clear();
+    }
+
+    public void removeItem(Item item){
+        toDoList.remove(item);
     }
 
     public ObservableList<Item> getToDoList(){
