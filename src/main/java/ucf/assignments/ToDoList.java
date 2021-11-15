@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 public class ToDoList {
 
     //makes ObservableList toDoList
-    private final ObservableList<Item> toDoList = FXCollections.observableArrayList();
+    private static final ObservableList<Item> toDoList = FXCollections.observableArrayList();
 
     //puts item together if description is valid
     public void addItem(String description, String dueDate, boolean complete){
@@ -31,7 +31,7 @@ public class ToDoList {
     }
 
     //gets toDoList
-    public ObservableList<Item> getToDoList(){
+    public static ObservableList<Item> getToDoList(){
         return toDoList;
     }
 
