@@ -61,11 +61,11 @@ void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
 }
 
 +class ToDoList{
--final ObservableList<Item> toDoList
+-{static} final ObservableList<Item> toDoList
 +void addItem(String description, String dueDate, boolean complete)
 +void clearList()
 +void removeItem(Item item)
-+ObservableList<Item> getToDoList()
++{static} ObservableList<Item> getToDoList()
 }
 
 App "starts" --> ListManagerController
