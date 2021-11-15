@@ -16,11 +16,15 @@ import java.util.Objects;
 public class App  extends javafx.application.Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //loads my fxml file, ListManager.fxml
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ListManager.fxml")));
+        //a theme that looks like the default Windows light theme
         JMetro jMetro = new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
+        //title of my window
         primaryStage.setTitle("ListManager");
         jMetro.setScene(scene);
+        //sets my primary and only scene stage
         primaryStage.setScene(scene);
         primaryStage.show();
     }
