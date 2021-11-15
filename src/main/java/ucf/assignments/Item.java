@@ -63,6 +63,12 @@ public class Item {
         return complete;
     }
 
+    //for testing purposes
+    public static boolean getCompleteTest(){
+        return true;
+    }
+
+
     //makes sure that the description is valid (between 1-256 characters and not an error message)
     public static boolean descriptionIsValid(String description){
         return description.length() >= 1 && description.length() <= 256 && !(description.equals("One or more invalid entries, please try again."));
