@@ -10,22 +10,27 @@ import javafx.collections.ObservableList;
 
 public class ToDoList {
 
+    //makes ObservableList toDoList
     private final ObservableList<Item> toDoList = FXCollections.observableArrayList();
 
+    //puts item together if description is valid
     public void addItem(String description, String dueDate, boolean complete){
         if(Item.descriptionIsValid(description)){
             toDoList.add(new Item(description, dueDate, complete));
         }
     }
 
+    //for testing purposes
     public void clearList(){
         toDoList.clear();
     }
 
+    //removes item from list
     public void removeItem(Item item){
         toDoList.remove(item);
     }
 
+    //gets toDoList
     public ObservableList<Item> getToDoList(){
         return toDoList;
     }
