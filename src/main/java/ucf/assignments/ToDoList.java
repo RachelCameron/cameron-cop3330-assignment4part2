@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 public class ToDoList {
 
     //makes ObservableList toDoList
+    //changed to static for testing
     private static final ObservableList<Item> toDoList = FXCollections.observableArrayList();
 
     //puts item together if description is valid
@@ -31,6 +32,7 @@ public class ToDoList {
     }
 
     //gets toDoList
+    //changed to static for testing
     public static ObservableList<Item> getToDoList(){
         return toDoList;
     }
