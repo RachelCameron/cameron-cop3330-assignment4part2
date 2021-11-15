@@ -197,7 +197,7 @@ public class ListManagerController {
         //ensures item is selected
         if(selectedItem != null){
             //removes item from list
-            list.removeItem(selectedItem);
+            ToDoList.removeItem(selectedItem);
             //removes item from index
             index--;
             //removes item from table view
