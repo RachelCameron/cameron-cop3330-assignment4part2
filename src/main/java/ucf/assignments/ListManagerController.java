@@ -205,6 +205,9 @@ public class ListManagerController {
     //13. A user shall be able to save the list (and all of its items) to external storage
     public void saveList(FileWriter writer) throws IOException {
         //saves the current list
+        if(this.listViewer == null){
+            return;
+        }
         for(Item i : list.getToDoList()) {
             writer.write(i.getDescription()+","+i.getDueDate()+","+i.getComplete()+"\n");
         }
@@ -226,6 +229,9 @@ public class ListManagerController {
     public void loadList(File file) throws FileNotFoundException {
         //loads list selected by user
         clear();
+        if(this.listViewer == null){
+            return;
+        }
         Scanner scanner = new Scanner(file);
         index = 0;
         while(scanner.hasNextLine()) {
