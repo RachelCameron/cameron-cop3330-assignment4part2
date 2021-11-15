@@ -31,11 +31,17 @@ AFTER already adding the item, double-click the current true/false you would
 like to edit, swap it, and press the enter key. You must either type "true"
 (to mark an item complete) OR "false" (to mark an item incomplete) as valid entry.
 If your entry is not valid, it will automatically mark the item as false (incomplete).
-- DISPLAY ALL EXISTING ITEMS: All existing items are displayed by default.
-- DISPLAY ONLY INCOMPLETE ITEMS:
-- DISPLAY ONLY COMPLETED ITEMS:
-- SAVE A LIST:
-- LOAD A LIST:
+- DISPLAY ALL EXISTING ITEMS: All existing items are displayed by default. If you clicked
+the "Show Complete/Incomplete Items Only" buttons, the button name will change to
+"Show All Items" which can then be clicked on once more to display all items again.
+- DISPLAY ONLY INCOMPLETE ITEMS: Click once on "Show Incomplete Items Only" -- if you
+would like to show all items again, click the button again (button text changes to "Show All Items").
+- DISPLAY ONLY COMPLETED ITEMS: Click once on "Show Complete Items Only" -- if you
+would like to show all items again, click the button again (button text changes to "Show All Items").
+- SAVE A LIST: Click on the "Save List" button, name your list in the file explorer, and
+click save. Your list will be saved as a text file.
+- LOAD A LIST: Click on the "Load List" button, select the list you'd like to load in the
+file explorer, and click open. The list viewer will populate with the list.
 - BONUS CREDIT, SORT BY DUE DATE: Click on the header labelled "Due Date:" to sort
 by due date chronologically. You can also sort the list items alphabetically by
 clicking on the "Item:" header and/or sort by completion status by clicking on the
