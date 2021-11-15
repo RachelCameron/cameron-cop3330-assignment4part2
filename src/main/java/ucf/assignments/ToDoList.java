@@ -21,13 +21,14 @@ public class ToDoList {
         }
     }
 
-    //for testing purposes
+    //only exists for testing purposes
     public void clearList(){
         toDoList.clear();
     }
 
     //removes item from list
-    public void removeItem(Item item){
+    //changed to static for testing
+    public static void removeItem(Item item){
         toDoList.remove(item);
     }
 
