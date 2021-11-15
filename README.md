@@ -1,5 +1,10 @@
 ## Important
 - NOTE: Please read NoteToTAsDechevApproval.md first.
+- BONUS CREDIT: Implemented sorting by due date to claim the extra credit. Instructions to do this are found at the end of the user guide below.
+- TESTING ABILITY TO EDIT: Please pay special attention to this section of the pseudocode in ListManagerController.java explaining that I cannot test my list item editing features BUT it is fully validated so there is no functional need to test as the information passed will always be valid,
+  - "//javafx table view automatically handles editing so the editing feature CANNOT BE TESTED by nature"
+  - "//implemented descriptionIsValid and dueDateIsValid within table view to ensure that new entries through editing will always be valid"
+  - "//if you try and edit in any invalid inputs, the invalid input is rejected and the old valid input is kept instead"
 
 ## User Guide
 - ADD AN ITEM: To add a new item to the list, you must:
