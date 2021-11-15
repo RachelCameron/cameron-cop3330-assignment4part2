@@ -64,7 +64,7 @@ void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
 -{static} final ObservableList<Item> toDoList
 +void addItem(String description, String dueDate, boolean complete)
 +void clearList()
-+void removeItem(Item item)
++{static} void removeItem(Item item)
 +{static} ObservableList<Item> getToDoList()
 }
 
