@@ -71,6 +71,14 @@ public class ListManagerControllerTest {
     }
 
     //5. A user shall be able to remove an item from the list
+    @Test
+    void removeFromList() {
+        listTester.clearList();
+        ToDoList.getToDoList().add(new Item("Implement Application", "2020-11-13", true));
+        ToDoList.getToDoList().add(new Item("Implement JUnit Testing", "2020-11-14", true));
+        ToDoList.getToDoList().add(new Item("Turn In Assignment", "2020-11-15", false));
+        ToDoList.getToDoList().add(new Item("Self-care Day", "2020-11-16", false));
+    }
 
     //6. A user shall be able to clear the list of all items
     @Test
@@ -140,7 +148,4 @@ public class ListManagerControllerTest {
         }
     }
 
-    //13. A user shall be able to save the list (and all of its items) to external storage
-
-    //14. A user shall be able to load a list (and all of its items) from external storage
 }
