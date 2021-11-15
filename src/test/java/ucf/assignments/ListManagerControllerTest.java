@@ -17,6 +17,8 @@ public class ListManagerControllerTest {
     // - The list shall have the capacity to store at least 100 unique items
     @Test
     void storageTest(){
+        //clears the list
+        listTester.clearList();
         ToDoList.getToDoList().clear();
         for (int i = 0; i <= 101; i++) {
             String description = "Test Description" + i;
@@ -30,6 +32,8 @@ public class ListManagerControllerTest {
     // - A description shall be between 1 and 256 characters in length
     @Test
     void descriptionValidTest(){
+        //clears the list
+        listTester.clearList();
         //valid description = true
         assertTrue(Item.descriptionIsValid("Valid Description"));
         //invalid length (too short), cannot be less than 1 character = false
@@ -43,6 +47,8 @@ public class ListManagerControllerTest {
     // - A due date shall be displayed to users in the format: YYYY-MM-DD
     @Test
     void dateValidTest(){
+        //clears the list
+        listTester.clearList();
         //valid due date = true
         assertTrue(Item.dueDateIsValid("2020-02-20"));
         //invalid formatting (should be YYYY-MM-DD), cannot have characters = false
@@ -54,6 +60,8 @@ public class ListManagerControllerTest {
     //4. A user shall be able to add a new item to the list
     @Test
     void addTest(){
+        //clears the list
+        listTester.clearList();
         //adds one item to the list
         ToDoList.getToDoList().add(new Item("Implement Application", "2020-11-13", true));
         //asserts that there is ONE item in the list
@@ -67,7 +75,9 @@ public class ListManagerControllerTest {
     //6. A user shall be able to clear the list of all items
     @Test
     void clearTest(){
+        //clears the list
         listTester.clearList();
+        //verifies the list is empty
         assertTrue(ToDoList.getToDoList().isEmpty());
     }
 
@@ -77,15 +87,58 @@ public class ListManagerControllerTest {
      * - javafx table view automatically handles editing so the editing feature CANNOT BE TESTED by nature
      * - implemented descriptionIsValid and dueDateIsValid within table view to ensure that new entries through editing will always be valid
      * - if you try and edit in any invalid inputs, the invalid input is rejected and the old valid input is kept instead
+     * - THESE REQUIREMENTS HAVE ALSO BEEN TESTED MANUALLY! :)
      */
 
     //9. A user shall be able to mark an item in the list as either complete or incomplete
+    @Test
+    void markTest(){
+        //for marking true (complete)
+        ToDoList.getToDoList().clear();
+        ToDoList.getToDoList().add(new Item("Implement Application", "2020-11-13", true));
+        assertTrue(Item.getCompleteTest());
+        //for marking false (incomplete)
+        ToDoList.getToDoList().clear();
+        ToDoList.getToDoList().add(new Item("Turn In Assignment", "2020-11-15", false));
+        assertFalse(!Item.getCompleteTest());
+    }
 
     //10. A user shall be able to display all of the existing items in the list
+    //Displayed in javafx by default, tested already since addTest() passed.
 
     //11. A user shall be able to display only the incomplete items in the list
+    @Test
+    void incompleteTest(){
+        //clears the list
+        listTester.clearList();
+        for (int i = 0; i < 10; i++)
+        {
+            //populates list with ten items that have complete = false (incomplete)
+            String description = "Test Description" + i;
+            ToDoList.getToDoList().add(new Item(description, "2020-02-20", false));
+        }
+        //if !complete = false (incomplete), verify all ten incomplete items show up
+        if(!Item.getCompleteTest()){
+            assertEquals(10, ToDoList.getToDoList().size());
+        }
+    }
 
     //12. A user shall be able to display only the completed items in the list
+    @Test
+    void completeTest(){
+        //clears the list
+        listTester.clearList();
+        for (int i = 0; i < 10; i++)
+        {
+            //populates list with ten items that have complete = true (complete)
+            String description = "Test Description" + i;
+            ToDoList.getToDoList().add(new Item(description, "2020-02-20", true));
+        }
+        //if complete = true (complete), verify all ten complete items show up
+        if(Item.getCompleteTest()){
+            assertEquals(10, ToDoList.getToDoList().size());
+        }
+    }
 
     //13. A user shall be able to save the list (and all of its items) to external storage
 
