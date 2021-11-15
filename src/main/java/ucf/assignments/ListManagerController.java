@@ -149,7 +149,7 @@ public class ListManagerController {
         itemViewer.setCellValueFactory(new PropertyValueFactory<>("description"));
         dueDateViewer.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         statusViewer.setCellValueFactory(new PropertyValueFactory<>("complete"));
-        listViewer.getItems().add(list.getToDoList().get(index));
+        listViewer.getItems().add(ToDoList.getToDoList().get(index));
         index++;
     }
 
@@ -181,7 +181,7 @@ public class ListManagerController {
     //6. A user shall be able to clear the list of all items
     public void clearAllListItems() {
         //removes all the items from the list
-        list.getToDoList().clear();
+        ToDoList.getToDoList().clear();
     }
 
     @FXML
@@ -226,7 +226,7 @@ public class ListManagerController {
             return;
         }
         //for every item, writes the item description, due date, and completion status
-        for(Item i : list.getToDoList()) {
+        for(Item i : ToDoList.getToDoList()) {
             //format should look like description,YYYY-MM-DD,true/false
             //example: Finish Project,2021-11-15,true
             //if task "Finish Project" due on "2021-11-15" is completed "true"
@@ -284,7 +284,7 @@ public class ListManagerController {
         if(!completeFlag)
         {
             //for loop each item from my main to-do list
-            for(Item i : list.getToDoList()) {
+            for(Item i : ToDoList.getToDoList()) {
                 //if complete then add it to new list
                 if(i.getComplete()){
                     completeList.add(i);
@@ -299,7 +299,7 @@ public class ListManagerController {
         }
         else
         {
-            listViewer.setItems(list.getToDoList());
+            listViewer.setItems(ToDoList.getToDoList());
             showCompleteItemsOnlyButton.setText("Show Complete Items Only");
             completeFlag = false;
 
@@ -321,7 +321,7 @@ public class ListManagerController {
         if(!incompleteFlag)
         {
             //for loop each item from my main to-do list
-            for(Item i : list.getToDoList()) {
+            for(Item i : ToDoList.getToDoList()) {
                 //if incomplete then add it to new list
                 if(!i.getComplete()){
                     incompleteList.add(i);
@@ -336,7 +336,7 @@ public class ListManagerController {
         }
         else
         {
-            listViewer.setItems(list.getToDoList());
+            listViewer.setItems(ToDoList.getToDoList());
             showIncompleteItemsOnlyButton.setText("Show Incomplete Items Only");
             incompleteFlag = false;
         }
@@ -344,8 +344,8 @@ public class ListManagerController {
 
     //prevents user from adding an item with a duplicated description
     public boolean isNotDuplicate(String desc){
-        if (!list.getToDoList().isEmpty()) {
-            for (Item item : list.getToDoList()) {
+        if (!ToDoList.getToDoList().isEmpty()) {
+            for (Item item : ToDoList.getToDoList()) {
                 if (item.getDescription().equals(desc)) {
                     return false;
                 }
