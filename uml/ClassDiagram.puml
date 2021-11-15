@@ -5,38 +5,71 @@
 +void main(String[] args)
 }
 
-+class ListManagerController{
--TextField itemField
--TextField itemDueDateField
--CheckBox completeCheckBox
-+void checkComplete()
--TableView<?> listViewer
--TableColumn<?, ?> itemViewer
--TableColumn<?, ?> dueDateViewer
--TableColumn<?, ?> statusViewer
--Button addItemButton
-void addItemButtonClicked(ActionEvent event)
-+void addItem()
--Button clearAllListItemsButton
-void clearAllListItemsButtonClicked(ActionEvent event)
-+void clearAllListItems()
--Button removeItemButton
-void removeItemButtonClicked(ActionEvent event)
-+void removeItem()
--Button saveListButton
-void saveListButtonClicked(ActionEvent event)
-+void saveList(File fileName)
--Button loadListButton
-void loadListButtonClicked(ActionEvent event)
-+void loadList(File fileName)
--Button showCompleteItemsOnlyButton
-void showCompleteItemsOnlyButtonClicked(ActionEvent event)
-+void showCompleteItemsOnly()
--Button showIncompleteItemsOnlyButton
-void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
-+void showIncompleteItemsOnly()
++class Item{
+-String description
+-String dueDate
+-boolean complete
++Item(String description, String dueDate, boolean complete)
++void setDescription(String description)
++void setDueDate(String dueDate)
++void setComplete(boolean complete)
++String getDescription()
++String getDueDate()
++boolean getComplete()
++{static} boolean descriptionIsValid(String description)
++{static} boolean dueDateIsValid(String dueDate)
 }
 
-App "launches" --> ListManagerController
++class ListManagerController{
+-final ToDoList list
+-TextField itemField
+-TextField itemDueDateField
+-Button addItemButton
+-Button clearAllListItemsButton
+-Button removeItemButton
+-Button saveListButton
+-Button loadListButton
+-Button showCompleteItemsOnlyButton
+-Button showIncompleteItemsOnlyButton
+-CheckBox completeCheckBox
+boolean completeFlag
+boolean incompleteFlag
+-TableView<Item> listViewer
+-TableColumn<Item, String> itemViewer
+-TableColumn<Item, String> dueDateViewer
+-TableColumn<Item, Boolean> statusViewer
+-int index
+void initialize()
+void addItemButtonClicked(ActionEvent event)
++void addItem()
+-void displayItem()
+-void clearTextFields()
+-void clear()
+void clearAllListItemsButtonClicked(ActionEvent event)
++void clearAllListItems()
+void removeItemButtonClicked(ActionEvent event)
++void removeItem()
+void saveListButtonClicked(ActionEvent event)
++void saveList(FileWriter writer)
+void loadListButtonClicked(ActionEvent event)
++void loadList(File file)
+void showCompleteItemsOnlyButtonClicked(ActionEvent event)
++void showCompleteItemsOnly()
+void showIncompleteItemsOnlyButtonClicked(ActionEvent event)
++void showIncompleteItemsOnly()
++boolean isNotDuplicate(String desc)
+}
+
++class ToDoList{
+-final ObservableList<Item> toDoList
++void addItem(String description, String dueDate, boolean complete)
++void clearList()
++void removeItem(Item item)
++ObservableList<Item> getToDoList()
+}
+
+App "starts" --> ListManagerController
+ListManagerController "interacts" <--> Item
+ListManagerController "interacts" <--> ToDoList
 
 @enduml
